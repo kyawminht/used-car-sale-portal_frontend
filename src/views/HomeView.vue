@@ -48,6 +48,7 @@ const searchQuery = ref('');
 const carStore = useCarStore();
 const cars = ref([]);
 
+
 const fetchCars = async (query = '') => {
   await carStore.fetchCars(query);
   cars.value = carStore.cars;

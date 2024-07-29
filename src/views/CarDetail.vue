@@ -7,7 +7,7 @@
       <div v-if="car">
         <div class="bg-white shadow-lg rounded-lg p-6 w-full grid grid-cols-12 gap-5">
           <div class="col-span-12 sm:col-span-8">
-            <img :src="getImageUrl(car.picture_url)" alt="Car Picture" class="sm:w-full sm:h-[500px] rounded-lg mb-4">
+            <img :src="getImageUrl(car.picture_url)" class="w-full h-[500px]" alt="">
           </div>
           <div class="col-span-12 sm:col-span-4">
             <div>
@@ -18,7 +18,7 @@
             </div>
             <div class="mt-4">
               <form @submit.prevent="submitBid">
-                <input v-model="bidPrice" type="number" step="0.01" placeholder="Enter your bid amount" class="mb-2 p-2 bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black">
+                <input v-model="bidPrice" type="number" step="0.01" placeholder="You can place your bid from here" class="mb-2 p-2 bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black">
                 <span v-if="errors.bid_price" class="text-red-500 text-sm">{{ errors.bid_price[0] }}</span>
                 <button type="submit" class="py-3 px-6 bg-blue-200 rounded-md transition-all duration-300 hover:bg-blue-300 hover:shadow-md w-full focus:outline-none">Bid</button>
               </form>

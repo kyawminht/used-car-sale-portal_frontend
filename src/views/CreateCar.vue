@@ -11,7 +11,7 @@
 			class="bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black"
 			placeholder="Please write the car make"
 			v-model="car.make"/>
-			<span v-if="errors.make" class="text-red-500 text-sm">{{ errors.make[0] }}</span>
+		  <span v-if="errors.make" class="text-red-500 text-sm">{{ errors.make[0] }}</span>
 		</div>
   
 		<div class="mt-5 relative">
@@ -22,7 +22,7 @@
 			class="bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black"
 			placeholder="Please write the car model"
 			v-model="car.model"/>
-			<span v-if="errors.model" class="text-red-500 text-sm">{{ errors.model[0] }}</span>
+		  <span v-if="errors.model" class="text-red-500 text-sm">{{ errors.model[0] }}</span>
 		</div>
   
 		<div class="mt-5 relative">
@@ -33,7 +33,7 @@
 			class="bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black"
 			placeholder="Please write the registration year"
 			v-model="car.registration_year" />
-			<span v-if="errors.registration_year" class="text-red-500 text-sm">{{ errors.registration_year[0] }}</span>
+		  <span v-if="errors.registration_year" class="text-red-500 text-sm">{{ errors.registration_year[0] }}</span>
 		</div>
   
 		<div class="mt-5 relative">
@@ -44,7 +44,7 @@
 			class="bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black"
 			placeholder="Please write the price"
 			v-model="car.price"/>
-			<span v-if="errors.price" class="text-red-500 text-sm">{{ errors.price[0] }}</span>
+		  <span v-if="errors.price" class="text-red-500 text-sm">{{ errors.price[0] }}</span>
 		</div>
   
 		<div class="mt-5 relative">
@@ -66,7 +66,7 @@
 			class="bg-transparent border border-black block px-5 py-2 w-full mt-3 placeholder:text-black"
 			placeholder="Please upload an image"
 			@change="handleFileUpload"
-			
+			multiple
 		  />
 		</div>
   
@@ -94,22 +94,20 @@
   import axios from '../axios';
   
   const router = useRouter();
-  const errors=ref([]);
-
+  const errors = ref([]);
+  
   const car = ref({
 	make: '',
 	model: '',
 	registration_year: '',
 	price: '',
 	description: '',
-	picture_url: null,
+	picture_url: [],
   });
   
   const handleFileUpload = (event) => {
-	const file = event.target.files[0];
-	if (file) {
-	  car.value.picture_url = file;
-	}
+	const files = event.target.files;
+	car.value.picture_url = Array.from(files);
   };
   
   const submitForm = async () => {
@@ -122,8 +120,9 @@
 	  formData.append('price', car.value.price);
 	  formData.append('description', car.value.description);
 	  if (car.value.picture_url) {
-		formData.append('picture_url', car.value.picture_url);
-	  }
+      const file = document.querySelector('#file').files[0];
+      formData.append('picture_url', file);
+    }
 	
 	  const response = await axios.post('http://127.0.0.1:8000/api/car', formData);
 	  console.log(response);
@@ -131,7 +130,7 @@
 	  router.push('/');
 	} catch (error) {
 	  if (error.response && error.response.status === 422) {
-		errors.value= error.response.data.errors;
+		errors.value = error.response.data.errors;
 	  } else {
 		console.error('Failed to create car:', error);
 	  }
@@ -140,6 +139,5 @@
   </script>
   
   <style lang="scss" scoped>
-  
   </style>
   

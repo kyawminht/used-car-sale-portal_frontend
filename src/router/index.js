@@ -12,6 +12,7 @@ import CarCreate from '@/views/CreateCar.vue';
 import UserList from '@/views/admin/UserList.vue';
 import CarManagement from '@/views/admin/CarManagement.vue';
 import UpdateCar from '@/views/admin/UpdateCar.vue';
+import AdminCarDetail from '@/views/admin/CarDetail.vue';
 
 const routes = [
   {
@@ -70,6 +71,12 @@ const routes = [
         path: 'cars',
         name: 'CarManagement',
         component: CarManagement,
+      },
+      {
+        path: 'car/bid/detail/:id',
+        name: 'detail-car',
+        component: AdminCarDetail,
+        props: true,
       },
       {
         path: 'car/update/:id',
