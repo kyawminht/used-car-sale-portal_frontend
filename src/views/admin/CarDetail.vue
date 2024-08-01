@@ -47,6 +47,7 @@
     import axios from '../../axios';
     import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import instance from '../../axios';
   
     const carStore = useCarStore();
     const route = useRoute();
@@ -57,7 +58,7 @@ import { useRoute } from 'vue-router';
 
     const fetchCarBid = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/bid/show/${route.params.id}`);
+        const response = await instance.get(`/bid/show/${route.params.id}`);
         console.log("Bid data", response.data.data);
         bid.value = response.data.data;
        
@@ -82,7 +83,7 @@ import { useRoute } from 'vue-router';
       try {
         const userId=bid.value?.user_id;
         if (userId){
-          const response=await axios.get(`http://127.0.0.1:8000/api/user/${userId}`);
+          const response=await instance.get(`/user/${userId}`);
           user.value= response.data.data;
           console.log("user",user.value.name);
         }else{

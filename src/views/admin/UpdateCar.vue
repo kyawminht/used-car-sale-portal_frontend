@@ -99,6 +99,7 @@
   import { useRouter, useRoute } from 'vue-router';
   import { useCarStore } from '@/stores/carStore';
   import axios from '../../axios';
+import instance from '../../axios';
   const router = useRouter();
   const route = useRoute();
   const errors = ref([]);
@@ -134,7 +135,7 @@
         formData.append('picture_url', car.value.picture_url);
       }
   
-      const response = await axios.post(`http://127.0.0.1:8000/api/car/update/${route.params.id}`, formData);
+      const response = await instance.post(`/car/update/${route.params.id}`, formData);
       console.log(response);
   
       router.push('/admin/cars');

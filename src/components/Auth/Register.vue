@@ -65,7 +65,7 @@
 		  </button>
 		</div>
 	  </form>
-	  <div class="mt-4">
+	  <!-- <div class="mt-4">
 		<h2 class="text-[--gray-2] text-[18px] text-center mx-2">
 		  Or Register Using
 		</h2>
@@ -85,7 +85,7 @@
 			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdoxHpvBb2ovxPTGhqtTBdOwGWvZGeJKi7FnJNTdqHSOoxkqfDctqzX29jCKb8Nep7S0o&usqp=CAU" alt="" />
 		  </div>
 		</div>
-	  </div>
+	  </div> -->
   
 	  <div class="text-[18px] text-center mt-4">
 		Already have an account?
@@ -95,11 +95,14 @@
 		>Login</NuxtLink>
 		here
 	  </div>
+	  <Footer></Footer>
 	</div>
   </template>
   
   <script setup>
-  import axios from 'axios';
+
+  import instance from '@/axios';
+	import Footer from '@/views/Footer.vue';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   
@@ -122,7 +125,7 @@
 	  formData.append('password', user.value.password);
 	  formData.append('password_confirmation', user.value.password_confirmation);
   
-	  const response = await axios.post('http://127.0.0.1:8000/api/register', formData);
+	  const response = await instance.post('/register', formData);
 	  console.log(response);
 	  router.push('/');
 	} catch (error) {

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import instance from '@/axios';
 
 export const useCarStore = defineStore('car', {
   state: () => ({
@@ -12,11 +13,11 @@ export const useCarStore = defineStore('car', {
       try {
         let response;
         if (query) {
-          response = await axios.get('http://127.0.0.1:8000/api/search', {
+          response = await instance.get('/search', {
             params: { search: query },
           });
         } else {
-          response = await axios.get('http://127.0.0.1:8000/api/car');
+          response = await instance.get('/car');
         }
         console.log('API Response:', response.data.data);
         this.cars = response.data.data;
@@ -26,7 +27,7 @@ export const useCarStore = defineStore('car', {
     },
     async fetchCarById (carId){
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/car/${carId}`);
+        const response = await instance.get(`/car/${carId}`);
         console.log("Car by ID:", response.data.data);
         this.car = response.data.data; 
       } catch (error) {

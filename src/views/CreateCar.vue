@@ -91,7 +91,7 @@
   <script setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import axios from '../axios';
+import instance from '../axios';
   
   const router = useRouter();
   const errors = ref([]);
@@ -124,7 +124,7 @@
       formData.append('picture_url', file);
     }
 	
-	  const response = await axios.post('http://127.0.0.1:8000/api/car', formData);
+	  const response = await instance.post('/car', formData);
 	  console.log(response);
   
 	  router.push('/');

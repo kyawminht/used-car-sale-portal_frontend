@@ -31,7 +31,7 @@
 				</button>
 			</div>
 		</form>
-		<div class="mt-4">
+		<!-- <div class="mt-4">
 			<h2 class="text-gray text-[18px] text-center mx-2">
 				Or Login Using
 			</h2>
@@ -51,7 +51,7 @@
 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdoxHpvBb2ovxPTGhqtTBdOwGWvZGeJKi7FnJNTdqHSOoxkqfDctqzX29jCKb8Nep7S0o&usqp=CAU" alt="" />
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<div class="text-[18px] text-center mt-4">
 			Have not Register yet?
@@ -62,11 +62,13 @@
 			>
 			here
 		</div>
+		<Footer></Footer>
 	</div>
 </template>
 
 <script setup>
-import axios from 'axios';
+import instance from '@/axios';
+import Footer from '@/views/Footer.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -79,7 +81,7 @@ const router = useRouter();
 
 const login = async () => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/api/login', user.value);
+    const response = await instance.post('/login', user.value);
 	console.log(response.data.access_token)
     const token = response.data.access_token;
 

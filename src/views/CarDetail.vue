@@ -44,6 +44,7 @@
   import axios from '../axios';
   import { onMounted, ref } from 'vue';
   import { useRoute,useRouter } from 'vue-router';
+import instance from '../axios';
   
   const route = useRoute();
   const id = route.params.id;
@@ -53,7 +54,7 @@
   const errors=ref([]);
   const fetchCarById = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/api/car/${id}`);
+      const response = await instance.get(`http://127.0.0.1:8000/api/car/${id}`);
       console.log("Car by ID:", response.data.data);
       car.value = response.data.data; 
     } catch (error) {
@@ -66,7 +67,7 @@
 
   const submitBid= async()=>{
     try {
-      const response= await axios.post('http://127.0.0.1:8000/api/bid/store',{
+      const response= await instance.post('/bid/store',{
         car_id:id,
         bid_price:bidPrice.value,
       });
