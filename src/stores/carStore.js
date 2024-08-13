@@ -31,7 +31,7 @@ export const useCarStore = defineStore('car', {
         console.log("Car by ID:", response.data.data);
         this.car = response.data.data; 
       } catch (error) {
-        console.error('Failed to fetch car details:', error);
+        console.log('Failed to fetch car details:');
       }
     },
   },

@@ -54,7 +54,7 @@ import instance from '../axios';
   const errors=ref([]);
   const fetchCarById = async () => {
     try {
-      const response = await instance.get(`http://127.0.0.1:8000/api/car/${id}`);
+      const response = await instance.get(`/car/${id}`);
       console.log("Car by ID:", response.data.data);
       car.value = response.data.data; 
     } catch (error) {
@@ -62,7 +62,7 @@ import instance from '../axios';
     }
   };
   const getImageUrl=(fileName) =>{
-      return `http://127.0.0.1:8000/storage/uploads/car/${fileName}`;
+    return `https://speedlapx.cloud/storage/app/public/uploads/car/${fileName}`;
   };
 
   const submitBid= async()=>{

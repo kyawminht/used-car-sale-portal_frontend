@@ -60,7 +60,7 @@ const handleSearch = () => {
 };
 
 const getImageUrl = (fileName) => {
-  return `http://127.0.0.1:8000/storage/uploads/car/${fileName}`;
+  return `https://speedlapx.cloud/storage/app/public/uploads/car/${fileName}`;
 };
 
 onMounted(async () => {

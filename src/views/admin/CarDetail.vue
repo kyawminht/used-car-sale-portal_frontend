@@ -87,18 +87,18 @@ import instance from '../../axios';
           user.value= response.data.data;
           console.log("user",user.value.name);
         }else{
-          console.error("user id not found");
+          console.log("user id not found");
         }
   
       } catch (error) {
-        console.error('Failed to fetch user', error);
+        console.log('Failed to fetch user');
         
       }finally {
     isLoading.value = false;
   }
     };
     const getImageUrl=(fileName) =>{
-        return `http://127.0.0.1:8000/storage/uploads/car/${fileName}`;
+      return `https://speedlapx.cloud/storage/app/public/uploads/car/${fileName}`;
     };
   
    

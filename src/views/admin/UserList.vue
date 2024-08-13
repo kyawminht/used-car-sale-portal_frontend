@@ -40,13 +40,14 @@
   
   <script setup>
   import { ref, onMounted, computed } from 'vue';
-  import axios from '../../axios';
+
+import instance from '../../axios';
   
   const users = ref([]);
   
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/api/users');
+      const response = await instance.get('/users');
       users.value = response.data.data;
       console.log("alluser",users.value);
     } catch (error) {
