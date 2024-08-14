@@ -74,12 +74,19 @@ import instance from '../axios';
       console.log("bid succes",response);
       router.push('/');
     } catch (error) {
-      if (error.response && error.response.status === 422){
-        errors.value=error.response.data.errors;
+    if (error.response) {
+      // Handle validation errors
+      if (error.response.status === 422) {
+        errors.value = error.response.data.errors;
       }
-      console.error("Failed to place bid",error)
+      // Redirect to login if unauthenticated
+      else if (error.response.status === 401) {
+        router.push('/auth/login');
+      }
     }
+    console.error("Failed to place bid", error);
   }
+};
   onMounted(() => {
     fetchCarById();
   });

@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import instance from '@/axios';
 
 export const useCarStore = defineStore('car', {
