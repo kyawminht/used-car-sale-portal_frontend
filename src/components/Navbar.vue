@@ -2,7 +2,7 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900 sm:w-[1170px] m-auto">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <router-link to="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Used Car Sale Portal</span>
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><img src="../assets/used_car_logo.png" class=" w-[100px] h-[100px] rounded-full" alt=""></span>
       </router-link>
       <button @click="toggleMenu" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden">
         <span class="sr-only">Open main menu</span>
@@ -27,7 +27,6 @@
 <script setup>
 import { ref } from 'vue';
 import { useAuth } from '../composable/useAuth';
-
 const { isLoggedIn, logout } = useAuth();
 
 console.log("logged in",isLoggedIn.value)
